@@ -11,6 +11,7 @@ This script requires the following packages to run:
 * cpufrequtils
 * notify-osd
 * sed
+
 If you run installer.sh, everything will be set up for you.
 
 ## Installation
