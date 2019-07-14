@@ -2,11 +2,8 @@
 A bash script to further facilitate the use of cpufrequtils on Debian-based Linux to throttle cpu clock speeds. May be adapted for other distros.
 
 ## Disclaimer
-This program is free software. It comes without any warranty, to
-the extent permitted by applicable law. You can redistribute it
-and/or modify it under the terms of the Do What The rainbows You Want
-To Public License, Version 2, as published by Sam Hocevar. See
-http://sam.zoy.org/wtfpl/COPYING for more details.
+This program is free software. It comes without any warranty, to the extent permitted by applicable law. You can redistribute it and/or modify it under the terms of the Do What The rainbows You Want To Public License, Version 2, as published by Sam Hocevar. See http://sam.zoy.org/wtfpl/COPYING for more details.
+
 Tested on Linux Mint 19 x64 Cinnamon.
 
 ## Dependencies
