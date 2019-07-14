@@ -69,7 +69,7 @@ fi
 
 # Make script executable and copy it to $installto directory
 chmod +x "./$script"
-sudo cp "./$script" "$installto/$script"
+sudo install "./$script" "$installto/$script"
 
 # Add alias
 echo "Do you wish to set an alias for cpu-control? [y/n]"
