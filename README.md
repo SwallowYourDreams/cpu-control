@@ -1,7 +1,7 @@
 # cpu-control
 A bash script to further facilitate the use of cpufrequtils on Debian-based Linux to throttle cpu clock speeds. May be adapted for other distros.
 
-##Disclaimer
+## Disclaimer
 This program is free software. It comes without any warranty, to
 the extent permitted by applicable law. You can redistribute it
 and/or modify it under the terms of the Do What The rainbows You Want
