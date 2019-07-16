@@ -54,7 +54,10 @@ function setclock {
 		if [ "$debugging" == "true" ] ; then
 			echo "Clockspeed: $clockspeed $UNIT"
 		fi
-		for i in 0 1 2 3; do
+		for((i=0; i < ${#cores[@]}; i++)); do
+			if [ "$debugging" == "true" ] ; then
+				echo "Setting CPU #$1 ; $clockspeeds$UNIT"
+			fi
 			sudo cpufreq-set -c $i -u "$clockspeed$UNIT"
 		done
 		msg="Clock speed is now limited to $(formatnumber $clockspeed) $UNIT."
