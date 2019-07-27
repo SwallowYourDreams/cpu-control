@@ -16,11 +16,13 @@ If you run installer.sh, everything will be set up for you.
 
 ## Installation
 1. Download the files and place them within the same folder.
-1. On the command line, make the installer executable (chmod +x installer.sh), run it and follow the instructions.
-1. The installer will
+1. On the command line, make the installer executable, and run it:
+`chmod +x installer.sh
+./installer.sh`
+1. Follow the instructions of the installer, which will
     * make sure all dependencies are fulfilled
     * copy the script to /usr/local/bin
-    * offer to exempt cpufreq-set from requiring a superuser password by placing in entry in sudoers.d (recommended if you're planning to tie it to hotkeys)
+    * offer to exempt cpufreq-set from requiring a superuser password by making an entry to sudoers.d (this is strongly recommended if you're planning to tie cpu-control to keyboard shortcuts)
     * offer to create a system-wide alias for running the script
 
 ## How to use it
