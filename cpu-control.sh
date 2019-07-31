@@ -44,16 +44,16 @@ fi
 # FUNCTIONS
 # Sets cpu clock speed to a user-defined value
 function setclock {
+	# Debugging message
+	if [ "$debugging" == "true" ] ; then
+		echo "Setting clock speed to $(formatnumber $1) Hz ($( formatnumber $(( $1 / $DIVISOR )) ) $UNIT)."
+	fi
 	if [ "$1" -gt "$max" ] || [ "$1" -lt "$minx" ] ; then
 		msg="Invalid clock speed: $(($1 / $DIVISOR)) $UNIT.\nYour CPU clock speeds may range from $(( $minx / $DIVISOR )) to $(( $max / $DIVISOR )) $UNIT."
 		userfeedback "${icons[error]}" "Error" "$msg"
 		exit 1
 	else
 		clockspeed=$(( $1 / $DIVISOR ))
-		# Debugging
-		if [ "$debugging" == "true" ] ; then
-			echo "Clockspeed: $clockspeed $UNIT"
-		fi
 		for((i=0; i < ${#cores[@]}; i++)); do
 			if [ "$debugging" == "true" ] ; then
 				echo "Setting CPU #$1 ; $clockspeeds$UNIT"
@@ -61,12 +61,13 @@ function setclock {
 			sudo cpufreq-set -c $i -u "$clockspeed$UNIT"
 		done
 		msg="Clock speed is now limited to $(formatnumber $clockspeed) $UNIT."
-		userfeedback "${icons[settings]}" "CPU" "$msg"
+		getcoreinfo
+		userfeedback "${icons[settings]}" "CPU" "$msg\n\n$clockspeeds"
 		exit 0
 	fi
 }
-# Shows the current clock speed for all cpu cores
-function showinfo {
+function getcoreinfo {
+	clockspeeds=""
 	# Get actual current clock speeds of all cpus
 	for(( i=0 ; i < ${#cores[@]} ; i++ )); do
 		core=${cores[$i]}
@@ -74,9 +75,12 @@ function showinfo {
 		clockspeed=$(formatnumber $clockspeed)
 		clockspeeds+="Core $(($i +1)):   $(formatnumber $clockspeed) MHz\n"
 	done
-	# Output
-	msg="Clock speed is between $clockmin and $clockmax $UNIT.\n\n$clockspeeds"
-	userfeedback "${icons[info]}" "CPU" "$msg"
+}
+# Shows the current clock speed for all cpu cores
+function showinfo {
+	getcoreinfo
+	msg="Clock speed is between $clockmin and $clockmax $UNIT."
+	userfeedback "${icons[info]}" "CPU" "$msg\n\n$clockspeeds"
 	exit 0
 }
 
