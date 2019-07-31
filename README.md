@@ -27,21 +27,21 @@ If you run installer.sh, everything will be set up for you.
 
 ## How to use it
 ### From the command line
-The -d option lets you use the default arguments _minx, min, med_ and _max_, whose clock speeds are calculated based on your the clock speed range of your cpu:
+The -d option lets you use the default arguments _minx, min, med_ and _max_, whose clock speeds are calculated based on the clock speed range of your cpu:
 
-`cpu-control -d minx` # extreme minimum
+`cpu-control -d minx` # extreme minimum, lowest possible clock speed
 
-`cpu-control -d min` # minimal
+`cpu-control -d min` # minimal, relatively low clock speed 
 
-`cpu-control -d med` # medium
+`cpu-control -d med` # medium, average clock speed
 
-`cpu-control -d max` # maximum
+`cpu-control -d max` # maximum clock speed
 
 The -s option lets you set a specific clock speed in MHz:
 
 `cpu-control -s 1500` # will limit cpu clock speed to 1500 MHz
 
-The -i option will display the current clock speed limit and the actual clockspeed of all cpu cores:
+The -i option will display the current clock speed limit and the actual clock speed of all cpu cores:
 
 `cpu-control -i`
 
