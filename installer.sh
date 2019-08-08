@@ -11,7 +11,7 @@ declare -r DEPENDENCIES=(cpufrequtils sed notify-osd)
 script="cpu-control.sh"
 installto="/usr/local/bin"
 sudoersfile="/etc/sudoers.d/cpufreq-set"
-aliasfile="/home/$USER/.bash_aliases"
+aliasfile="$HOME/.bash_aliases"
 
 # Handle options and arguments
 while getopts ":v" o; do
