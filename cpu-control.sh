@@ -11,6 +11,7 @@ declare -r CPUFREQDIR="/sys/devices/system/cpu/cpufreq"
 declare -r UNIT="MHz" #unit used to measure cpu clock speed. Default: MHz.
 declare -r DIVISOR=1000 #number by which all cpu clock speeds (in Hz) are divided. Needs to be set according to the unit chosen. Default: 1000
 declare -r SEPARATOR="." #character used to separate the thousands in large numbers. Default: comma (,)
+showinfo="false" #Upon changing clockspeed, also show information about the current clock speed of every cpu core
 debugging="false"
 
 # INTERNAL VARIABLES: These values should normally remain untouched.
@@ -61,7 +62,9 @@ function setclock {
 			sudo cpufreq-set -c $i -u "$clockspeed$UNIT"
 		done
 		msg="Clock speed is now limited to $(formatnumber $clockspeed) $UNIT."
-		getcoreinfo
+		if [ "$showinfo" == "true" ] ; do
+			getcoreinfo
+		fi
 		userfeedback "${icons[settings]}" "CPU" "$msg\n\n$clockspeeds"
 		exit 0
 	fi
