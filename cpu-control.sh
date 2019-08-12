@@ -62,7 +62,7 @@ function setclock {
 			sudo cpufreq-set -c $i -u "$clockspeed$UNIT"
 		done
 		msg="Clock speed is now limited to $(formatnumber $clockspeed) $UNIT."
-		if [ "$showinfo" == "true" ] ; do
+		if [ "$showinfo" == "true" ] ; then
 			getcoreinfo
 		fi
 		userfeedback "${icons[settings]}" "CPU" "$msg\n\n$clockspeeds"
