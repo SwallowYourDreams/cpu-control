@@ -18,10 +18,10 @@ If you run installer.sh, everything will be set up for you.
 
 After downloading/cloning, run `installer.sh` and follow its instructions, which will
 
-    * make sure all dependencies are fulfilled
-    * copy the script to /usr/local/bin
-    * offer to exempt cpufreq-set from requiring a superuser password by making an entry to sudoers.d (this is strongly recommended if you're planning to tie cpu-control to keyboard shortcuts)
-    * offer to create a system-wide alias for running the script
+* make sure all dependencies are fulfilled
+* copy the script to /usr/local/bin
+* offer to exempt cpufreq-set from requiring a superuser password by making an entry to sudoers.d (this is strongly recommended if you're planning to tie cpu-control to keyboard shortcuts)
+* offer to create a system-wide alias for running the script
     
 ## How to use it
 ### From the command line
