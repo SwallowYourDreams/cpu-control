@@ -15,6 +15,7 @@ This script requires the following packages to run:
 If you run installer.sh, everything will be set up for you.
 
 ## Installation
+
 After downloading/cloning, run `installer.sh` and follow its instructions, which will
     * make sure all dependencies are fulfilled
     * copy the script to /usr/local/bin
