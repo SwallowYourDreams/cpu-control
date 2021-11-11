@@ -15,8 +15,7 @@ This script requires the following packages to run:
 If you run installer.sh, everything will be set up for you.
 
 ## Installation
-1. Download the files and place them within the same folder.
-1. Run `installer.sh` and follow its instructions, which will
+After downloading/cloning, run `installer.sh` and follow its instructions, which will
     * make sure all dependencies are fulfilled
     * copy the script to /usr/local/bin
     * offer to exempt cpufreq-set from requiring a superuser password by making an entry to sudoers.d (this is strongly recommended if you're planning to tie cpu-control to keyboard shortcuts)
