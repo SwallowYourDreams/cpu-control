@@ -65,7 +65,9 @@ function setclock {
 		if [ "$showinfo" == "true" ] ; then
 			getcoreinfo
 		fi
-		userfeedback "${icons[settings]}" "CPU" "$msg\n\n$clockspeeds"
+		if [ "$q" != "true" ] ; then
+			userfeedback "${icons[settings]}" "CPU" "$msg\n\n$clockspeeds"
+		fi
 		exit 0
 	fi
 }
@@ -99,11 +101,20 @@ function formatnumber {
 
 # Displays syntax instructions for options and arguments
 function usage {
-	usage="$(basename $0) [-i] [-d minx|min|med|max] [-s clockspeed*]\n*in MHz\n"
-	msg="Incorrect use of options or arguments."
-	userfeedback "${icons[error]}" "Error" "$msg"
+	usage="Usage:\n"
+	usage+="Show current clock speed:\n\t $(basename $0) -i\n"
+	usage+="Quiet mode (disables popup notifications):\n\t $(basename $0) -q\n"
+	usage+="Set to default speed:\n\t $(basename $0) -d [minx|min|med|max]\n"
+	usage+="Set to user-specified speed:\n\t $(basename $0) -s [clockspeed-in-MHz]\n"
+	usage+="Show usage:\n\t $(basename $0) -h\n"
 	printf "$usage"
-	exit 1
+	if [ "$1" != "-h" ] ; then
+		msg="Incorrect use of options or arguments."
+		userfeedback "${icons[error]}" "Error" "$msg"
+		exit 1
+	else
+		exit 0
+	fi
 }
 
 # OPTIONS
@@ -112,25 +123,31 @@ if [ -z $1 ] ; then
 	usage
 fi
 # option and argument handling
-while getopts "id:s:" o; do
+while getopts "ihqd:s:" o; do
 	case "${o}" in
 		i)
 			showinfo
+		;;
+		h)
+			usage $1
+		;;
+		q)
+			q="true"
 		;;
 		d)
 			d=${OPTARG}
 			case "$d" in
 				minx)
-					setclock $minx
+					setclock $minx $q
 				;;
 				min)
-					setclock $min
+					setclock $min $q
 				;;
 				med)
-					setclock $med
+					setclock $med $q
 				;;
 				max)
-					setclock $max
+					setclock $max $q
 				;;
 				*)
 					usage
@@ -139,10 +156,7 @@ while getopts "id:s:" o; do
 		;;
 		s)
 			s=${OPTARG}
-			setclock $(($s * $DIVISOR))
-		;;
-		h)
-			usage
+			setclock $(($s * $DIVISOR)) $q
 		;;
 		*)
 			usage
